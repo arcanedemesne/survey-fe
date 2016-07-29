@@ -1,0 +1,14 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var UTILITY = {
+
+  cloneState: function cloneState(state) {
+    return JSON.parse(JSON.stringify(state));
+  }
+
+};
+exports.default = UTILITY;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9hcHAvaGVscGVycy91dGlsaXR5LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBQUEsSUFBTSxVQUFVOztBQUVkLGNBQVksb0JBQUMsS0FBRCxFQUFXO0FBQ3JCLFdBQU8sS0FBSyxLQUFMLENBQVcsS0FBSyxTQUFMLENBQWUsS0FBZixDQUFYLENBQVA7QUFDRDs7QUFKYSxDQUFoQjtrQkFPZSxPIiwiZmlsZSI6InV0aWxpdHkuanMiLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCBVVElMSVRZID0ge1xyXG5cclxuICBjbG9uZVN0YXRlOiAoc3RhdGUpID0+IHtcclxuICAgIHJldHVybiBKU09OLnBhcnNlKEpTT04uc3RyaW5naWZ5KHN0YXRlKSk7XHJcbiAgfVxyXG5cclxufTtcclxuZXhwb3J0IGRlZmF1bHQgVVRJTElUWTsiXX0=
