@@ -1,5 +1,5 @@
 {
-  "name": "deloitte-symphony-survey-fe",
+  "name": "survey-fe",
   "version": "1.0.0",
   "description": "Deloitte Symphony Survey Front End",
   "scripts": {
@@ -45,9 +45,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://symphonyvsts.visualstudio.com/Symphony_Project/_git/deloitte-symphony-survey-fe"
+    "url": "https://github.com/arcanedemesne/survey-fe"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "MIT"
 }
