@@ -1,7 +1,4 @@
 import React from 'react';
-import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import '../../../node_modules/toastr/build/toastr.min.css';
-import '../../assets/styles/app.css';
 
 const SurveyMode = {
     Edit: 'Edit',
