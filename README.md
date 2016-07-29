@@ -1,21 +1,30 @@
 # deloitte-symphony-survey-fe
 
-```html
-<h2>Deloitte Symphony Survey Front End</h2>
+Deloitte Symphony Survey Front End
 
-<pre>
-    <div class="container">
-        <div class="block two first">
-            <h2>Scripts</h2>
-            <div class="wrap">
-                <p><b>npm install</b> - This will install your node packages.</p>
-                <p><b>npm update</b> - This will update your node packages.</p>
-                <p><b>npm start -s</b> - This will run the app in dev mode and run your tests in watch mode.</p>
-                <p><b>npm test</b> - This run just your tests.</p>
-                <p><b>npm test:watch</b> - This will run your tests in watch mode.</p>
-                <p><b>npm run build</b> - This will package everything up in the /build folder.</p>
-            </div>
-        </div>
-    </div>
-</pre>
-```
+## Dependencies
+
+Node 6.3.1 is what was used for this package.
+    
+    https://nodejs.org/en/
+    
+NPM 3.10.3 is what was used for this package.
+
+    npm install
+    npm update
+    
+This should install all the other dependencies listed in the package.json file.
+
+## Build
+
+Open your terminal in the root folder and enter the following:
+
+    npm run build
+
+This will Package, Minify, and Uglify the app into a ./build folder:
+
+## Tests
+
+Open your terminal in the root folder and enter the following:
+
+	npm test
