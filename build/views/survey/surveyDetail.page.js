@@ -84,10 +84,9 @@
       var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SurveyDetailPage).call(this, props));
 
       _this.state = {
-        survey: [],
+        survey: _this.props.survey,
         errors: []
       };
-
       return _this;
     }
 
