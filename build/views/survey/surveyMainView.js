@@ -104,7 +104,11 @@
                         null,
                         'External Survey Module'
                     ),
-                    'I can do all the things!'
+                    _react2.default.createElement(
+                        'span',
+                        { className: 'error' },
+                        'I can do all the things!'
+                    )
                 );
             }
         }]);
