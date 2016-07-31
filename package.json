@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Deloitte Symphony Survey Front End",
   "scripts": {
-    "build": "babel src/views/survey/surveyMainView.jsx --ignore \"src/**/*.tests.js\" --out-dir ./build",
     "test": "mocha --reporter progress tools/testSetup.js \"src/**/*.tests.js\""
   },
   "repository": {

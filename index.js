@@ -1,3 +1,3 @@
-import SurveyMainView from './build/views/survey/surveyMainView.jsx';
+import SurveyMainView from './src/views/survey/surveyMainView.jsx';
 
 module.exports = require(SurveyMainView);
