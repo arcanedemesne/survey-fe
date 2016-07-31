@@ -20,7 +20,7 @@ class SurveyMainView extends React.Component {
         return (
             <div>
                 <h3>External Survey Module</h3>
-                I can do all the things!
+                <span className="error">I can do all the things!</span>
             </div>
         );
     }
