@@ -18,7 +18,10 @@ class SurveyMainView extends React.Component {
 
     render() {
         return (
-            <div>External Survey Module</div>
+            <div>
+                <h3>External Survey Module</h3>
+                I can do all the things!
+            </div>
         );
     }
 }
