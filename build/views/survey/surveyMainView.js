@@ -1,16 +1,16 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define(['exports', 'react', '../../assets/styles/app.css'], factory);
+        define(['exports', 'react', './surveyDetailPage', '../../assets/styles/app.css'], factory);
     } else if (typeof exports !== "undefined") {
-        factory(exports, require('react'), require('../../assets/styles/app.css'));
+        factory(exports, require('react'), require('./surveyDetailPage'), require('../../assets/styles/app.css'));
     } else {
         var mod = {
             exports: {}
         };
-        factory(mod.exports, global.react, global.app);
+        factory(mod.exports, global.react, global.surveyDetailPage, global.app);
         global.surveyMainView = mod.exports;
     }
-})(this, function (exports, _react) {
+})(this, function (exports, _react, _surveyDetailPage) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -18,6 +18,8 @@
     });
 
     var _react2 = _interopRequireDefault(_react);
+
+    var _surveyDetailPage2 = _interopRequireDefault(_surveyDetailPage);
 
     function _interopRequireDefault(obj) {
         return obj && obj.__esModule ? obj : {
@@ -104,11 +106,7 @@
                         null,
                         'External Survey Module'
                     ),
-                    _react2.default.createElement(
-                        'span',
-                        { className: 'error' },
-                        'I can do all the things!'
-                    )
+                    _react2.default.createElement(_surveyDetailPage2.default, null)
                 );
             }
         }]);
