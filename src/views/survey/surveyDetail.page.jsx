@@ -7,10 +7,9 @@ class SurveyDetailPage extends React.Component {
     super(props);
 
     this.state = {
-      survey: [],
+      survey: this.props.survey,
       errors: []
     };
-
   }
 
   componentWillReceiveProps(nextProps) {
