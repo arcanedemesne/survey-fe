@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../assets/styles/app.css';
+import SurveyDetailPage from './surveyDetailPage';
 
 const SurveyMode = {
     Edit: 'Edit',
@@ -21,7 +22,7 @@ class SurveyMainView extends React.Component {
         return (
             <div>
                 <h3>External Survey Module</h3>
-                <span className="error">I can do all the things!</span>
+                <SurveyDetailPage />
             </div>
         );
     }
