@@ -1,16 +1,16 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define(['exports', 'react', './surveyDetail.page', '../../assets/styles/app.css'], factory);
+        define(['exports', 'react', './surveyDetail.page', '../../app/survey/survey.api', '../../assets/styles/app.css'], factory);
     } else if (typeof exports !== "undefined") {
-        factory(exports, require('react'), require('./surveyDetail.page'), require('../../assets/styles/app.css'));
+        factory(exports, require('react'), require('./surveyDetail.page'), require('../../app/survey/survey.api'), require('../../assets/styles/app.css'));
     } else {
         var mod = {
             exports: {}
         };
-        factory(mod.exports, global.react, global.surveyDetail, global.app);
+        factory(mod.exports, global.react, global.surveyDetail, global.survey, global.app);
         global.surveyMainView = mod.exports;
     }
-})(this, function (exports, _react, _surveyDetail) {
+})(this, function (exports, _react, _surveyDetail, _survey) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -20,6 +20,8 @@
     var _react2 = _interopRequireDefault(_react);
 
     var _surveyDetail2 = _interopRequireDefault(_surveyDetail);
+
+    var _survey2 = _interopRequireDefault(_survey);
 
     function _interopRequireDefault(obj) {
         return obj && obj.__esModule ? obj : {
@@ -90,14 +92,29 @@
 
             _this.state = {
                 mode: SurveyMode.Edit,
-                templateName: props.templateName
+                templateName: props.templateName,
+                survey: {}
             };
             return _this;
         }
 
         _createClass(SurveyMainView, [{
+            key: 'componentWillMount',
+            value: function componentWillMount() {
+                var _this2 = this;
+
+                var templateName = 'Preliminary Questions';
+                console.log(templateName);
+                _survey2.default.viewSurvey(templateName).then(function (survey) {
+                    console.log('survey-main', survey);
+                    _this2.setState({ survey: survey });
+                });
+            }
+        }, {
             key: 'render',
             value: function render() {
+                var survey = this.state.survey;
+
                 return _react2.default.createElement(
                     'div',
                     null,
@@ -106,7 +123,7 @@
                         null,
                         'External Survey Module'
                     ),
-                    _react2.default.createElement(_surveyDetail2.default, null)
+                    _react2.default.createElement(_surveyDetail2.default, survey)
                 );
             }
         }]);

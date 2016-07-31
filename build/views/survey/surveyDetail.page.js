@@ -1,16 +1,16 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(['exports', 'react', '../../app/survey/survey.api', './surveyAnswers.component', '../../app/survey/survey.store'], factory);
+    define(['exports', 'react', './surveyAnswers.component'], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require('react'), require('../../app/survey/survey.api'), require('./surveyAnswers.component'), require('../../app/survey/survey.store'));
+    factory(exports, require('react'), require('./surveyAnswers.component'));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.react, global.survey, global.surveyAnswers, global.survey);
+    factory(mod.exports, global.react, global.surveyAnswers);
     global.surveyDetailPage = mod.exports;
   }
-})(this, function (exports, _react, _survey, _surveyAnswers, _survey3) {
+})(this, function (exports, _react, _surveyAnswers) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -19,28 +19,7 @@
 
   var _react2 = _interopRequireDefault(_react);
 
-  var _survey2 = _interopRequireDefault(_survey);
-
   var _surveyAnswers2 = _interopRequireDefault(_surveyAnswers);
-
-  var SurveyStore = _interopRequireWildcard(_survey3);
-
-  function _interopRequireWildcard(obj) {
-    if (obj && obj.__esModule) {
-      return obj;
-    } else {
-      var newObj = {};
-
-      if (obj != null) {
-        for (var key in obj) {
-          if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
-        }
-      }
-
-      newObj.default = obj;
-      return newObj;
-    }
-  }
 
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
@@ -99,13 +78,13 @@
   var SurveyDetailPage = function (_React$Component) {
     _inherits(SurveyDetailPage, _React$Component);
 
-    function SurveyDetailPage() {
+    function SurveyDetailPage(props) {
       _classCallCheck(this, SurveyDetailPage);
 
-      var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SurveyDetailPage).call(this));
+      var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SurveyDetailPage).call(this, props));
 
       _this.state = {
-        prompts: [],
+        survey: [],
         errors: []
       };
 
@@ -113,40 +92,19 @@
     }
 
     _createClass(SurveyDetailPage, [{
-      key: 'componentDidMount',
-      value: function componentDidMount() {
-        var _this2 = this;
-
-        //Load Initial Data via AJAX
-        _survey2.default.viewSurvey('Preliminary Questions').then(function (survey) {
-          console.log(survey);
-          _this2.setState(survey);
-        });
-      }
-    }, {
-      key: 'componentWillMount',
-      value: function componentWillMount() {
-        //Invoked once
-        SurveyStore.addChangeListener(this.onChange);
-      }
-    }, {
-      key: 'componentWillUnmount',
-      value: function componentWillUnmount() {
-        //Clean up when this component is unmounted
-        //When fetching data asynchronously, use componentWillUnmount
-        // to cancel any outstanding requests before the component is unmounted.
-        SurveyStore.removeChangeListener(this.onChange);
-      }
-    }, {
-      key: 'onChange',
-      value: function onChange() {
-        this.setState(SurveyStore.getSurvey());
+      key: 'componentWillReceiveProps',
+      value: function componentWillReceiveProps(nextProps) {
+        if (nextProps.survey) {
+          this.setState({ survey: nextProps.survey });
+        }
       }
     }, {
       key: 'render',
       value: function render() {
-        var page = this.state;
+        var survey = this.state.survey;
 
+
+        console.log('survey-detail', survey);
         return _react2.default.createElement(
           'div',
           null,
@@ -156,14 +114,14 @@
             _react2.default.createElement(
               'legend',
               null,
-              page.name
+              survey.name
             ),
             _react2.default.createElement(
               'p',
               null,
-              page.description
+              survey.description
             ),
-            _react2.default.createElement(_surveyAnswers2.default, { prompts: page.prompts })
+            _react2.default.createElement(_surveyAnswers2.default, { prompts: survey.prompts })
           )
         );
       }

@@ -1,16 +1,16 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define(['exports', '../helpers/api.utility', '../../config/apiRoutes.config', './survey.store'], factory);
+        define(['exports', '../helpers/api.utility', '../../config/apiRoutes.config'], factory);
     } else if (typeof exports !== "undefined") {
-        factory(exports, require('../helpers/api.utility'), require('../../config/apiRoutes.config'), require('./survey.store'));
+        factory(exports, require('../helpers/api.utility'), require('../../config/apiRoutes.config'));
     } else {
         var mod = {
             exports: {}
         };
-        factory(mod.exports, global.api, global.apiRoutes, global.survey);
+        factory(mod.exports, global.api, global.apiRoutes);
         global.surveyApi = mod.exports;
     }
-})(this, function (exports, _api, _apiRoutes, _survey) {
+})(this, function (exports, _api, _apiRoutes) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -18,25 +18,6 @@
     });
 
     var _apiRoutes2 = _interopRequireDefault(_apiRoutes);
-
-    var SurveyStore = _interopRequireWildcard(_survey);
-
-    function _interopRequireWildcard(obj) {
-        if (obj && obj.__esModule) {
-            return obj;
-        } else {
-            var newObj = {};
-
-            if (obj != null) {
-                for (var key in obj) {
-                    if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
-                }
-            }
-
-            newObj.default = obj;
-            return newObj;
-        }
-    }
 
     function _interopRequireDefault(obj) {
         return obj && obj.__esModule ? obj : {
@@ -87,12 +68,11 @@
             key: 'viewSurvey',
             value: function viewSurvey(templateName) {
                 return new Promise(function (resolve, reject) {
-                    var surveyTemplateState = getSurveyState();
-                    if (surveyTemplateState.name != templateName) {
-                        surveyTemplateState = getSurveyTemplateFromServer(templateName);
-                    }
-
-                    return resolve(surveyTemplateState);
+                    return (0, _api.GET)(_apiRoutes2.default.surveyTemplate(templateName)).then(function (template) {
+                        return resolve(template);
+                    }).catch(function (error) {
+                        return reject(error);
+                    });
                 });
             }
         }, {
@@ -101,10 +81,6 @@
                 return new Promise(function (resolve, reject) {
 
                     return sendSurveySaveToServer(survey).then(function () {
-
-                        // const action = ACTIONS.SAVE_SURVEY(survey);
-                        // SurveyStore.(action);
-
                         return resolve();
                     }).catch(function (error) {
                         return reject(error);
@@ -115,27 +91,6 @@
 
         return SurveyApi;
     }();
-
-    function getSurveyState() {
-        return Object.assign({}, SurveyStore.getSurvey());
-    }
-
-    function getSurveyTemplateFromServer(templateName) {
-        return new Promise(function (resolve, reject) {
-
-            return (0, _api.GET)(_apiRoutes2.default.surveyTemplate(templateName)).then(function (template) {
-
-                /*Dispatcher.dispatch({
-                    actionType: ActionTypes.STORE_SURVEY_TEMPLATE,
-                    survey: template
-                });*/
-
-                return resolve(Object.assign({}, SurveyStore.getSurvey()));
-            }).catch(function (error) {
-                return reject(error);
-            });
-        });
-    }
 
     function sendSurveySaveToServer(survey) {
         survey.ownerId = 'LoremIpsum'; // TODO: this will come from the context passed in when it is converted into a module/component instead of a web app.
