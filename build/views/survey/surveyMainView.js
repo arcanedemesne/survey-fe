@@ -99,7 +99,12 @@
                 return _react2.default.createElement(
                     'div',
                     null,
-                    'External Survey Module'
+                    _react2.default.createElement(
+                        'h3',
+                        null,
+                        'External Survey Module'
+                    ),
+                    'I can do all the things!'
                 );
             }
         }]);

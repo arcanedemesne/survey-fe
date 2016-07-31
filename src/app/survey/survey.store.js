@@ -1,5 +1,5 @@
-import Dispatcher from '../appdispatcher';
-import  * as ActionTypes from './survey.action.types';
+//import Dispatcher from '../appdispatcher';
+//import  * as ActionTypes from './survey.action.types';
 import { EventEmitter } from 'events';
 
 var CHANGE_EVENT = 'change';
@@ -21,7 +21,7 @@ var SurveyStore =  Object.assign({}, EventEmitter.prototype, {
     }
 });
 
-Dispatcher.register(function(action) {
+/*Dispatcher.register(function(action) {
     switch(action.actionType) {
         case ActionTypes.INITIALIZE:
             survey = action.initialData.survey;
@@ -39,6 +39,6 @@ Dispatcher.register(function(action) {
         default:
         // no op
     }
-});
+});*/
 
 module.exports = SurveyStore;
