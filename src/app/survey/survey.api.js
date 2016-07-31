@@ -1,18 +1,15 @@
 import { GET, POST } from '../helpers/api.utility';
 import API_ROUTES from '../../config/apiRoutes.config';
-import  * as SurveyStore from './survey.store';
-//import  Dispatcher from '../appdispatcher';
-//import  * as ActionTypes from './survey.action.types';
 
 class SurveyApi {
     static viewSurvey(templateName) {
         return new Promise((resolve, reject) => {
-            let surveyTemplateState = getSurveyState();
-            if(surveyTemplateState.name != templateName) {
-                surveyTemplateState = getSurveyTemplateFromServer(templateName);
-            }
+            return GET(API_ROUTES.surveyTemplate(templateName))
+                .then((template) => {
+                    return resolve(template);
+                })
+                .catch((error) => { return reject(error); });
 
-            return resolve(surveyTemplateState);
         });
     }
 
@@ -21,39 +18,12 @@ class SurveyApi {
 
             return sendSurveySaveToServer(survey)
                 .then(() => {
-
-                   // const action = ACTIONS.SAVE_SURVEY(survey);
-                   // SurveyStore.(action);
-
                     return resolve();
                 })
                 .catch((error) => { return reject(error); });
         });
 
     }
-}
-
-
-function getSurveyState() {
-    return  Object.assign({},SurveyStore.getSurvey()) ;
-}
-
-function getSurveyTemplateFromServer(templateName) {
-    return new Promise((resolve, reject) => {
-
-        return GET(API_ROUTES.surveyTemplate(templateName))
-            .then((template) => {
-
-                /*Dispatcher.dispatch({
-                    actionType: ActionTypes.STORE_SURVEY_TEMPLATE,
-                    survey: template
-                });*/
-
-                return resolve(Object.assign({},SurveyStore.getSurvey()));
-            })
-            .catch((error) => { return reject(error); });
-
-    });
 }
 
 function sendSurveySaveToServer(survey) {
