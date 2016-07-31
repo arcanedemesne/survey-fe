@@ -1,8 +1,8 @@
 import { GET, POST } from '../helpers/api.utility';
 import API_ROUTES from '../../config/apiRoutes.config';
 import  * as SurveyStore from './survey.store';
-import  Dispatcher from '../appdispatcher';
-import  * as ActionTypes from './survey.action.types';
+//import  Dispatcher from '../appdispatcher';
+//import  * as ActionTypes from './survey.action.types';
 
 class SurveyApi {
     static viewSurvey(templateName) {
@@ -44,10 +44,10 @@ function getSurveyTemplateFromServer(templateName) {
         return GET(API_ROUTES.surveyTemplate(templateName))
             .then((template) => {
 
-                Dispatcher.dispatch({
+                /*Dispatcher.dispatch({
                     actionType: ActionTypes.STORE_SURVEY_TEMPLATE,
                     survey: template
-                });
+                });*/
 
                 return resolve(Object.assign({},SurveyStore.getSurvey()));
             })
