@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../assets/styles/app.css';
-import SurveyDetailPage from './surveyDetailPage';
+import SurveyDetailPage from './surveyDetail.page';
 
 const SurveyMode = {
     Edit: 'Edit',
