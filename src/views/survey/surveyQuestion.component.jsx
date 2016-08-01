@@ -11,6 +11,11 @@ class SurveyQuestionComponent extends React.Component {
   }
 
   render() {
+      return (
+          <div>{this.props.propmts.length} prompt(s)</div>
+      );
+  }
+  /*render() {
     this.prompts = this.props.prompts;
     this.keyIncriment = this.props.keyIncriment || 0;
 
@@ -115,6 +120,6 @@ class SurveyQuestionComponent extends React.Component {
     });
 
     return followups;
-  }
+  }*/
 }
 export default SurveyQuestionComponent;
