@@ -22,7 +22,6 @@ class SurveyMainView extends React.Component {
 
     componentWillMount() {
         const templateName = 'Preliminary Questions';
-        console.log(templateName);
         SurveyApi.viewSurvey(templateName).then((survey) => {
             this.setState({ survey });
         });
@@ -30,7 +29,6 @@ class SurveyMainView extends React.Component {
 
     render() {
         const { survey } = this.state;
-        console.log('survey-main', survey);
         if (survey) {
             return (
                 <div>
