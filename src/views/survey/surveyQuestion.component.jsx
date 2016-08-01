@@ -89,7 +89,7 @@ class SurveyQuestionComponent extends React.Component {
         }
 
         return (
-          <div key={ 'prompt-field-' + prompt.id }>
+          <div key={prompt.id}>
             { field }
             { prompt.errors.map((error) => {
               return <div className="error">{ error }</div>
