@@ -91,7 +91,7 @@ class SurveyQuestionComponent extends React.Component {
           <div key={'field' + count}>
             { field }
             { prompt.errors.map((error) => {
-              return <div className="error">{ error }</div>
+              return <div key={'error' + count} className="error">{ error }</div>
             })}
             { this.renderFollowups(prompt) }
           </div>

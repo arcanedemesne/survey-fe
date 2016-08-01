@@ -194,7 +194,7 @@
               prompt.errors.map(function (error) {
                 return _react2.default.createElement(
                   'div',
-                  { className: 'error' },
+                  { key: 'error' + count, className: 'error' },
                   error
                 );
               }),
