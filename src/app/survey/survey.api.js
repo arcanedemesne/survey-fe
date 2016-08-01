@@ -15,7 +15,6 @@ class SurveyApi {
 
     static saveSurvey(survey) {
         return new Promise((resolve, reject) => {
-
             return sendSurveySaveToServer(survey)
                 .then(() => {
                     return resolve();
@@ -37,6 +36,7 @@ function sendSurveySaveToServer(survey) {
         responses: collectSurveyPromptResponses(survey.prompts)
     };
 
+    console.log('request', request);
     return POST(API_ROUTES.surveySave(), request);
 
 

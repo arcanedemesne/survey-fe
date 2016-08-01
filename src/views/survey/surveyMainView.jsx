@@ -22,6 +22,7 @@ class SurveyMainView extends React.Component {
     }
 
     componentWillMount() {
+        //TODO: viewSurvey by engagementId?
         SurveyApi.viewSurvey(this.state.templateName).then((survey) => {
             this.setState({ survey });
         });
@@ -32,7 +33,6 @@ class SurveyMainView extends React.Component {
         if (survey) {
             return (
                 <div>
-                    <h3>External Survey Module</h3>
                     { mode == SurveyMode.Edit && <SurveyEditPage survey={survey} /> }
                     { mode == SurveyMode.View && <SurveyDetailPage survey={survey} /> }
                 </div>

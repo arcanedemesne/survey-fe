@@ -79,7 +79,6 @@
             key: 'saveSurvey',
             value: function saveSurvey(survey) {
                 return new Promise(function (resolve, reject) {
-
                     return sendSurveySaveToServer(survey).then(function () {
                         return resolve();
                     }).catch(function (error) {
@@ -103,6 +102,7 @@
             responses: collectSurveyPromptResponses(survey.prompts)
         };
 
+        console.log('request', request);
         return (0, _api.POST)(_apiRoutes2.default.surveySave(), request);
 
         function collectSurveyPromptResponses(prompts) {
