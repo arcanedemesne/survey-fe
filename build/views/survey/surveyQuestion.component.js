@@ -189,7 +189,7 @@
 
             return _react2.default.createElement(
               'div',
-              { key: 'prompt-field-' + prompt.id },
+              { key: prompt.id },
               field,
               prompt.errors.map(function (error) {
                 return _react2.default.createElement(
