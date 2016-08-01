@@ -1,1 +1,1 @@
-module.exports = require('./build/views/survey/surveyMainView.js');
+module.exports = require('./build/views/survey/survey.main.js');
