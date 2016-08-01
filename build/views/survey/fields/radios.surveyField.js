@@ -91,32 +91,29 @@
         this.defaultValue = this.props.defaultValue;
         this.onChange = this.props.onChange;
 
-        return (
-          //TODO: figure out why react-radio-group isn't working in Symphony
+        return _react2.default.createElement(
+          'div',
+          null,
           _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              { htmlFor: this.name },
-              this.labelText
-            ),
-            _react2.default.createElement(
-              _reactRadioGroup.RadioGroup,
-              {
-                name: this.name,
-                selectedValue: this.defaultValue,
-                onChange: this.onChange },
-              this.options.map(function (option) {
-                return _react2.default.createElement(
-                  'span',
-                  { key: 'radiooption' + option.id },
-                  _react2.default.createElement(_reactRadioGroup.Radio, { value: option.id }),
-                  ' ',
-                  option.displayName
-                );
-              })
-            )
+            'label',
+            { htmlFor: this.name },
+            this.labelText
+          ),
+          _react2.default.createElement(
+            _reactRadioGroup.RadioGroup,
+            {
+              name: this.name,
+              selectedValue: this.defaultValue,
+              onChange: this.onChange },
+            this.options.map(function (option) {
+              return _react2.default.createElement(
+                'span',
+                { key: 'radiooption' + option.id },
+                _react2.default.createElement(_reactRadioGroup.Radio, { value: option.id }),
+                ' ',
+                option.displayName
+              );
+            })
           )
         );
       }
