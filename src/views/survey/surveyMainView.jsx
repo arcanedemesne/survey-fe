@@ -24,18 +24,18 @@ class SurveyMainView extends React.Component {
         const templateName = 'Preliminary Questions';
         console.log(templateName);
         SurveyApi.viewSurvey(templateName).then((survey) => {
-            console.log('survey-main', survey);
             this.setState({ survey });
         });
     }
 
     render() {
         const { survey } = this.state;
+        console.log('survey-main', survey);
         if (survey) {
             return (
                 <div>
                     <h3>External Survey Module</h3>
-                    <SurveyDetailPage {...survey} />
+                    <SurveyDetailPage survey={survey} />
                 </div>
             );
         } else {
