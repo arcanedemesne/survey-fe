@@ -98,7 +98,7 @@
           null,
           _react2.default.createElement(
             'label',
-            null,
+            { htmlFor: this.name },
             this.labelText
           ),
           _react2.default.createElement(

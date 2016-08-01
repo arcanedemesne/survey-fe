@@ -98,13 +98,13 @@
             null,
             _react2.default.createElement(
               'label',
-              null,
+              { htmlFor: this.name },
               this.labelText
             ),
             _react2.default.createElement(
               _reactRadioGroup.RadioGroup,
               {
-                name: this.name + '',
+                name: this.name,
                 selectedValue: this.defaultValue,
                 onChange: this.onChange },
               this.options.map(function (option) {
