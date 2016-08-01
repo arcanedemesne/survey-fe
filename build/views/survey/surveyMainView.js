@@ -104,7 +104,6 @@
                 var _this2 = this;
 
                 var templateName = 'Preliminary Questions';
-                console.log(templateName);
                 _survey2.default.viewSurvey(templateName).then(function (survey) {
                     _this2.setState({ survey: survey });
                 });
@@ -114,7 +113,6 @@
             value: function render() {
                 var survey = this.state.survey;
 
-                console.log('survey-main', survey);
                 if (survey) {
                     return _react2.default.createElement(
                         'div',

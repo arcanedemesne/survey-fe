@@ -102,26 +102,33 @@
       value: function render() {
         var survey = this.state.survey;
 
-        console.log('survey-detail', survey);
-        return _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(
-            'fieldset',
+        if (survey.prompts) {
+          return _react2.default.createElement(
+            'div',
             null,
             _react2.default.createElement(
-              'legend',
+              'fieldset',
               null,
-              survey.name
-            ),
-            _react2.default.createElement(
-              'p',
-              null,
-              survey.description
-            ),
-            _react2.default.createElement(_surveyAnswers2.default, { prompts: survey.prompts })
-          )
-        );
+              _react2.default.createElement(
+                'legend',
+                null,
+                survey.name
+              ),
+              _react2.default.createElement(
+                'p',
+                null,
+                survey.description
+              ),
+              _react2.default.createElement(_surveyAnswers2.default, { prompts: survey.prompts })
+            )
+          );
+        } else {
+          return _react2.default.createElement(
+            'div',
+            { className: 'error' },
+            'No prompts found.'
+          );
+        }
       }
     }]);
 

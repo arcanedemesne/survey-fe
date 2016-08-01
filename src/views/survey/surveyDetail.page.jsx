@@ -20,18 +20,21 @@ class SurveyDetailPage extends React.Component {
 
   render() {
     let { survey } = this.state;
-    console.log('survey-detail', survey);
-    return (
-        <div>
-          <fieldset>
-            <legend>{ survey.name }</legend>
-            <p>{ survey.description }</p>
+    if (survey.prompts) {
+      return (
+          <div>
+            <fieldset>
+              <legend>{ survey.name }</legend>
+              <p>{ survey.description }</p>
 
-            <SurveyAnswersComponent prompts={ survey.prompts }/>
+              <SurveyAnswersComponent prompts={ survey.prompts }/>
 
-          </fieldset>
-        </div>
-    );
+            </fieldset>
+          </div>
+      );
+    } else {
+      return (<div className="error">No prompts found.</div>);
+    }
   }
 }
 export default SurveyDetailPage;
