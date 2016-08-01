@@ -11,7 +11,6 @@ class SurveyQuestionComponent extends React.Component {
 
   render() {
     this.prompts = this.props.prompts;
-    this.keyIncriment = this.props.keyIncriment || 0;
 
     this.renderTextField = (prompt) => {
       return (
@@ -71,7 +70,7 @@ class SurveyQuestionComponent extends React.Component {
       )
     };
 
-    return <div key={ 'survey-question-component' + this.keyIncriment }>
+    return <div>
 
       { this.prompts.map((prompt) => {
         prompt.errors = prompt.errors || [];
