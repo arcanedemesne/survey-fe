@@ -7,8 +7,7 @@ class SurveyDetailPage extends React.Component {
     super(props);
 
     this.state = {
-      survey: props.survey,
-      errors: []
+      survey: props.survey
     };
   }
 

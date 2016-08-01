@@ -1,63 +1,48 @@
 import React  from 'react';
 import * as  SurveyActions from '../../app/survey/survey.actions';
 import SurveyQuestionComponent from './surveyQuestion.component';
-import  * as SurveyStore from '../../app/survey/survey.store';
-import SurveyApi  from '../../app/survey/survey.api';
 
 export default class SurveyEditPage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {prompts: props.prompts};
+
+        this.state = {
+            survey: props.survey
+        };
     }
 
-    componentDidMount() {
-        //Load Initial Data via AJAX
-        SurveyApi.viewSurvey('Preliminary Questions').then((survey) => {
-            console.log(survey);
-            this.setState(survey);
-        });
-    }
-
-    componentWillMount() {
-        //Invoked once
-        SurveyStore.addChangeListener(this.onChange);
-    }
-
-    componentWillUnmount() {
-        //Clean up when this component is unmounted
-        //When fetching data asynchronously, use componentWillUnmount
-        // to cancel any outstanding requests before the component is unmounted.
-        SurveyStore.removeChangeListener(this.onChange);
-
-    }
-
-    onChange() {
-        this.setState(SurveyStore.getSurvey());
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.survey) {
+            this.setState({ survey: nextProps.survey });
+        }
     }
 
     render() {
-        let page = this.state;
+        let { survey } = this.state;
+        if (survey.prompts) {
+            return (
+                <div>
+                    <fieldset>
+                        <legend>{ survey.name }</legend>
+                        <p>{ survey.description }</p>
 
-        return (
-            <div>
-                <fieldset>
-                    <legend>{ page.name }</legend>
-                    <p>{ page.description }</p>
+                        <SurveyQuestionComponent prompts={ survey.prompts }/>
 
-                    <SurveyQuestionComponent prompts={ page.prompts }/>
-
-                    <div>
-                        <button type="button" className="button" onClick={ this.save.bind(this) }>Save</button>
-                    </div>
-                </fieldset>
-            </div>
-        );
+                        <div>
+                            <button type="button" className="button" onClick={ this.save.bind(this) }>Save</button>
+                        </div>
+                    </fieldset>
+                </div>
+            );
+        } else {
+            return (<div className="error">No prompts found.</div>);
+        }
     }
 
     save() {
         let survey = this.state;
         if (!validateSurvey(survey)) {
-            this.setState(survey);
+            this.setState({ survey: survey });
             return;
         }
 
@@ -67,7 +52,7 @@ export default class SurveyEditPage extends React.Component {
 
 //set default props
 SurveyEditPage.defaultProps = {
-    prompts: []
+    survey: {}
 };
 
 function validateSurvey(survey) {

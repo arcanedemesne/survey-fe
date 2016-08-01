@@ -1,7 +1,8 @@
 import React from 'react';
 import '../../assets/styles/app.css';
-import SurveyDetailPage from './surveyDetail.page';
 import SurveyApi from '../../app/survey/survey.api';
+import SurveyDetailPage from './surveyDetail.page';
+import SurveyEditPage from './surveyEdit.page.page';
 
 const SurveyMode = {
     Edit: 'edit',
@@ -32,8 +33,8 @@ class SurveyMainView extends React.Component {
             return (
                 <div>
                     <h3>External Survey Module</h3>
-                    { mode == SurveyMode.Edit && <SurveyDetailPage survey={survey} /> }
-                    { mode == SurveyMode.View && 'View' }
+                    { mode == SurveyMode.Edit && <SurveyEditPage survey={survey} /> }
+                    { mode == SurveyMode.View && <SurveyDetailPage survey={survey} /> }
                 </div>
             );
         } else {
