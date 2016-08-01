@@ -89,7 +89,7 @@
                 survey: props.survey
             };
 
-            _this.saveSurvey = saveSurvey.bind(_this);
+            _this.saveSurvey = _this.saveSurvey.bind(_this);
             return _this;
         }
 
