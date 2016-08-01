@@ -115,16 +115,33 @@
             value: function render() {
                 var survey = this.state.survey;
 
-                return _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement(
-                        'h3',
+                if (survey) {
+                    return _react2.default.createElement(
+                        'div',
                         null,
-                        'External Survey Module'
-                    ),
-                    _react2.default.createElement(_surveyDetail2.default, survey)
-                );
+                        _react2.default.createElement(
+                            'h3',
+                            null,
+                            'External Survey Module'
+                        ),
+                        _react2.default.createElement(_surveyDetail2.default, survey)
+                    );
+                } else {
+                    return _react2.default.createElement(
+                        'div',
+                        null,
+                        _react2.default.createElement(
+                            'h3',
+                            null,
+                            'External Survey Module'
+                        ),
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'error' },
+                            'Invalid Template Name'
+                        )
+                    );
+                }
             }
         }]);
 

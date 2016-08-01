@@ -20,7 +20,6 @@ class SurveyDetailPage extends React.Component {
 
   render() {
     let { survey } = this.state;
-
     console.log('survey-detail', survey);
     return (
         <div>
@@ -28,7 +27,7 @@ class SurveyDetailPage extends React.Component {
             <legend>{ survey.name }</legend>
             <p>{ survey.description }</p>
 
-            <SurveyAnswersComponent prompts={ survey.prompts } />
+            <SurveyAnswersComponent prompts={ survey.prompts }/>
 
           </fieldset>
         </div>

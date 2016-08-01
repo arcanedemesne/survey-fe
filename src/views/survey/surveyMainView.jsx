@@ -31,12 +31,21 @@ class SurveyMainView extends React.Component {
 
     render() {
         const { survey } = this.state;
-        return (
-            <div>
-                <h3>External Survey Module</h3>
-                <SurveyDetailPage {...survey} />
-            </div>
-        );
+        if (survey) {
+            return (
+                <div>
+                    <h3>External Survey Module</h3>
+                    <SurveyDetailPage {...survey} />
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <h3>External Survey Module</h3>
+                    <span className="error">Invalid Template Name</span>
+                </div>
+            );
+        }
     }
 }
 
