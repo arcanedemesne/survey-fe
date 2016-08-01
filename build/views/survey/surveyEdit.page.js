@@ -1,8 +1,8 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define(['exports', 'react', '../../app/survey/survey.actions', './surveyQuestion.component'], factory);
+        define(['exports', 'react', '../../app/survey/survey.api', './surveyQuestion.component'], factory);
     } else if (typeof exports !== "undefined") {
-        factory(exports, require('react'), require('../../app/survey/survey.actions'), require('./surveyQuestion.component'));
+        factory(exports, require('react'), require('../../app/survey/survey.api'), require('./surveyQuestion.component'));
     } else {
         var mod = {
             exports: {}
@@ -19,26 +19,9 @@
 
     var _react2 = _interopRequireDefault(_react);
 
-    var SurveyActions = _interopRequireWildcard(_survey);
+    var _survey2 = _interopRequireDefault(_survey);
 
     var _surveyQuestion2 = _interopRequireDefault(_surveyQuestion);
-
-    function _interopRequireWildcard(obj) {
-        if (obj && obj.__esModule) {
-            return obj;
-        } else {
-            var newObj = {};
-
-            if (obj != null) {
-                for (var key in obj) {
-                    if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
-                }
-            }
-
-            newObj.default = obj;
-            return newObj;
-        }
-    }
 
     function _interopRequireDefault(obj) {
         return obj && obj.__esModule ? obj : {
@@ -167,7 +150,7 @@
                     return;
                 }
 
-                SurveyActions.saveSurvey(survey);
+                _survey2.default.saveSurvey(survey);
             }
         }]);
 

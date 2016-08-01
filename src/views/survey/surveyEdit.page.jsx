@@ -1,5 +1,5 @@
 import React  from 'react';
-import * as  SurveyActions from '../../app/survey/survey.actions';
+import SurveyApi from '../../app/survey/survey.api';
 import SurveyQuestionComponent from './surveyQuestion.component';
 
 export default class SurveyEditPage extends React.Component {
@@ -46,7 +46,7 @@ export default class SurveyEditPage extends React.Component {
             return;
         }
 
-        SurveyActions.saveSurvey(survey);
+        SurveyApi.saveSurvey(survey);
     }
 }
 
