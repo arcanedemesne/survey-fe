@@ -12,7 +12,7 @@ class SurveyQuestionComponent extends React.Component {
 
   render() {
       return (
-          <div>{this.props.propmts.length} prompt(s)</div>
+          <div>{this.props.prompts.length} prompt(s)</div>
       );
   }
   /*render() {
