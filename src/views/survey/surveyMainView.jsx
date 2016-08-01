@@ -2,7 +2,7 @@ import React from 'react';
 import '../../assets/styles/app.css';
 import SurveyApi from '../../app/survey/survey.api';
 import SurveyDetailPage from './surveyDetail.page';
-import SurveyEditPage from './surveyEdit.page.page';
+import SurveyEditPage from './surveyEdit.page';
 
 const SurveyMode = {
     Edit: 'edit',
