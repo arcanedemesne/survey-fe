@@ -1,16 +1,16 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define(['exports', 'react', '../../app/survey/survey.actions', './surveyQuestion.component', '../../app/survey/survey.store', '../../app/survey/survey.api'], factory);
+        define(['exports', 'react', '../../app/survey/survey.actions', './surveyQuestion.component'], factory);
     } else if (typeof exports !== "undefined") {
-        factory(exports, require('react'), require('../../app/survey/survey.actions'), require('./surveyQuestion.component'), require('../../app/survey/survey.store'), require('../../app/survey/survey.api'));
+        factory(exports, require('react'), require('../../app/survey/survey.actions'), require('./surveyQuestion.component'));
     } else {
         var mod = {
             exports: {}
         };
-        factory(mod.exports, global.react, global.survey, global.surveyQuestion, global.survey, global.survey);
+        factory(mod.exports, global.react, global.survey, global.surveyQuestion);
         global.surveyEditPage = mod.exports;
     }
-})(this, function (exports, _react, _survey, _surveyQuestion, _survey2, _survey3) {
+})(this, function (exports, _react, _survey, _surveyQuestion) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -22,10 +22,6 @@
     var SurveyActions = _interopRequireWildcard(_survey);
 
     var _surveyQuestion2 = _interopRequireDefault(_surveyQuestion);
-
-    var SurveyStore = _interopRequireWildcard(_survey2);
-
-    var _survey4 = _interopRequireDefault(_survey3);
 
     function _interopRequireWildcard(obj) {
         if (obj && obj.__esModule) {
@@ -107,81 +103,66 @@
             var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SurveyEditPage).call(this, props));
 
             _this.state = {
-                prompts: props.prompts || []
+                survey: props.survey
             };
             return _this;
         }
 
         _createClass(SurveyEditPage, [{
-            key: 'componentDidMount',
-            value: function componentDidMount() {
-                var _this2 = this;
-
-                //Load Initial Data via AJAX
-                _survey4.default.viewSurvey('Preliminary Questions').then(function (survey) {
-                    console.log(survey);
-                    _this2.setState(survey);
-                });
-            }
-        }, {
-            key: 'componentWillMount',
-            value: function componentWillMount() {
-                //Invoked once
-                SurveyStore.addChangeListener(this.onChange);
-            }
-        }, {
-            key: 'componentWillUnmount',
-            value: function componentWillUnmount() {
-                //Clean up when this component is unmounted
-                //When fetching data asynchronously, use componentWillUnmount
-                // to cancel any outstanding requests before the component is unmounted.
-                SurveyStore.removeChangeListener(this.onChange);
-            }
-        }, {
-            key: 'onChange',
-            value: function onChange() {
-                this.setState(SurveyStore.getSurvey());
+            key: 'componentWillReceiveProps',
+            value: function componentWillReceiveProps(nextProps) {
+                if (nextProps.survey) {
+                    this.setState({ survey: nextProps.survey });
+                }
             }
         }, {
             key: 'render',
             value: function render() {
-                var page = this.state;
+                var survey = this.state.survey;
 
-                return _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement(
-                        'fieldset',
+                if (survey.prompts) {
+                    return _react2.default.createElement(
+                        'div',
                         null,
                         _react2.default.createElement(
-                            'legend',
-                            null,
-                            page.name
-                        ),
-                        _react2.default.createElement(
-                            'p',
-                            null,
-                            page.description
-                        ),
-                        _react2.default.createElement(_surveyQuestion2.default, { prompts: page.prompts }),
-                        _react2.default.createElement(
-                            'div',
+                            'fieldset',
                             null,
                             _react2.default.createElement(
-                                'button',
-                                { type: 'button', className: 'button', onClick: this.save.bind(this) },
-                                'Save'
+                                'legend',
+                                null,
+                                survey.name
+                            ),
+                            _react2.default.createElement(
+                                'p',
+                                null,
+                                survey.description
+                            ),
+                            _react2.default.createElement(_surveyQuestion2.default, { prompts: survey.prompts }),
+                            _react2.default.createElement(
+                                'div',
+                                null,
+                                _react2.default.createElement(
+                                    'button',
+                                    { type: 'button', className: 'button', onClick: this.save.bind(this) },
+                                    'Save'
+                                )
                             )
                         )
-                    )
-                );
+                    );
+                } else {
+                    return _react2.default.createElement(
+                        'div',
+                        { className: 'error' },
+                        'No prompts found.'
+                    );
+                }
             }
         }, {
             key: 'save',
             value: function save() {
                 var survey = this.state;
                 if (!validateSurvey(survey)) {
-                    this.setState(survey);
+                    this.setState({ survey: survey });
                     return;
                 }
 
@@ -197,7 +178,7 @@
 
     //set default props
     SurveyEditPage.defaultProps = {
-        prompts: []
+        survey: {}
     };
 
     function validateSurvey(survey) {

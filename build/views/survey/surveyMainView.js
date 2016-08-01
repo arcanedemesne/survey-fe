@@ -1,16 +1,16 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define(['exports', 'react', './surveyDetail.page', '../../app/survey/survey.api', '../../assets/styles/app.css'], factory);
+        define(['exports', 'react', '../../app/survey/survey.api', './surveyDetail.page', './surveyEdit.page.page', '../../assets/styles/app.css'], factory);
     } else if (typeof exports !== "undefined") {
-        factory(exports, require('react'), require('./surveyDetail.page'), require('../../app/survey/survey.api'), require('../../assets/styles/app.css'));
+        factory(exports, require('react'), require('../../app/survey/survey.api'), require('./surveyDetail.page'), require('./surveyEdit.page.page'), require('../../assets/styles/app.css'));
     } else {
         var mod = {
             exports: {}
         };
-        factory(mod.exports, global.react, global.surveyDetail, global.survey, global.app);
+        factory(mod.exports, global.react, global.survey, global.surveyDetail, global.surveyEditPage, global.app);
         global.surveyMainView = mod.exports;
     }
-})(this, function (exports, _react, _surveyDetail, _survey) {
+})(this, function (exports, _react, _survey, _surveyDetail, _surveyEditPage) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -19,9 +19,11 @@
 
     var _react2 = _interopRequireDefault(_react);
 
+    var _survey2 = _interopRequireDefault(_survey);
+
     var _surveyDetail2 = _interopRequireDefault(_surveyDetail);
 
-    var _survey2 = _interopRequireDefault(_survey);
+    var _surveyEditPage2 = _interopRequireDefault(_surveyEditPage);
 
     function _interopRequireDefault(obj) {
         return obj && obj.__esModule ? obj : {
@@ -123,8 +125,8 @@
                             null,
                             'External Survey Module'
                         ),
-                        mode == SurveyMode.Edit && _react2.default.createElement(_surveyDetail2.default, { survey: survey }),
-                        mode == SurveyMode.View && 'View'
+                        mode == SurveyMode.Edit && _react2.default.createElement(_surveyEditPage2.default, { survey: survey }),
+                        mode == SurveyMode.View && _react2.default.createElement(_surveyDetail2.default, { survey: survey })
                     );
                 } else {
                     return _react2.default.createElement(
