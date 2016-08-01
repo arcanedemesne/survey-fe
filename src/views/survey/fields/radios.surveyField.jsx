@@ -12,6 +12,7 @@ class RadiosSurveyField extends React.Component {
     this.onChange = this.props.onChange;
 
     return (
+      //TODO: figure out why react-radio-group isn't working in Symphony
       <div>
         <label>{ this.labelText }</label>
           {/*<RadioGroup

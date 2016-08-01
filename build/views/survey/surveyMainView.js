@@ -105,6 +105,7 @@
             value: function componentWillMount() {
                 var _this2 = this;
 
+                //TODO: viewSurvey by engagementId?
                 _survey2.default.viewSurvey(this.state.templateName).then(function (survey) {
                     _this2.setState({ survey: survey });
                 });
@@ -120,11 +121,6 @@
                     return _react2.default.createElement(
                         'div',
                         null,
-                        _react2.default.createElement(
-                            'h3',
-                            null,
-                            'External Survey Module'
-                        ),
                         mode == SurveyMode.Edit && _react2.default.createElement(_surveyEdit2.default, { survey: survey }),
                         mode == SurveyMode.View && _react2.default.createElement(_surveyDetail2.default, { survey: survey })
                     );
