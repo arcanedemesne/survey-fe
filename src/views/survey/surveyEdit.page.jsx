@@ -7,7 +7,9 @@ import SurveyApi  from '../../app/survey/survey.api';
 export default class SurveyEditPage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {prompts: props.prompts};
+        this.state = {
+            prompts: props.prompts || []
+        };
     }
 
     componentDidMount() {

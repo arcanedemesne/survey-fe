@@ -106,7 +106,9 @@
 
             var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SurveyEditPage).call(this, props));
 
-            _this.state = { prompts: props.prompts };
+            _this.state = {
+                prompts: props.prompts || []
+            };
             return _this;
         }
 
