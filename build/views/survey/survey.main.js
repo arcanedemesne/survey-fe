@@ -120,7 +120,6 @@
 
                 var survey = this.state.survey;
 
-                console.log(survey);
                 if (!this.validateSurvey(survey)) {
                     this.setState({ survey: survey });
                     return;
