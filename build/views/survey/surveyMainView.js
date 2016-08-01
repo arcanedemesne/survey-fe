@@ -98,7 +98,7 @@
                 survey: {}
             };
 
-            _this.surveyfinished = _this.surveyfinished.bind(_this);
+            _this.surveyComplete = _this.surveyComplete.bind(_this);
             return _this;
         }
 

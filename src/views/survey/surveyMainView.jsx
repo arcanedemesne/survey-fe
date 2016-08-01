@@ -20,7 +20,7 @@ class SurveyMainView extends React.Component {
             survey: {}
         };
 
-        this.surveyfinished = this.surveyfinished.bind(this);
+        this.surveyComplete = this.surveyComplete.bind(this);
     }
 
     componentWillMount() {
