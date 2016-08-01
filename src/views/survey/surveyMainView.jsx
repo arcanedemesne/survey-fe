@@ -22,6 +22,7 @@ class SurveyMainView extends React.Component {
         };
 
         this.saveSurvey = this.saveSurvey.bind(this);
+        this.validateSurvey = this.validateSurvey.bind(this);
     }
 
     componentWillMount() {
@@ -33,7 +34,7 @@ class SurveyMainView extends React.Component {
     saveSurvey() {
         let { survey } = this.state;
         console.log(survey);
-        if (!validateSurvey(survey)) {
+        if (!this.validateSurvey(survey)) {
             this.setState({ survey: survey });
             return;
         }
@@ -43,6 +44,38 @@ class SurveyMainView extends React.Component {
         }).catch((error) => {
             console.log(error);
         });
+    }
+
+    validateSurvey(survey) {
+
+        return validatePrompts(survey.prompts);
+
+        function validatePrompts(prompts) {
+            let isValidPrompts = true;
+
+            prompts.forEach((prompt) => {
+                prompt.errors = [];
+                if (!prompt.isRequired) {
+                    return;
+                }
+
+                let hasSelectedOption = false;
+                prompt.options.forEach((option) => {
+                    if (option.isSelected == true) {
+                        hasSelectedOption = true;
+                        validatePrompts(option.followUpPrompts);
+                    }
+                });
+                if (hasSelectedOption) {
+                    return;
+                }
+
+                prompt.errors = ['This question is required and must be answered.'];
+                isValidPrompts = false;
+            });
+
+            return isValidPrompts;
+        }
     }
 
     render() {
