@@ -102,7 +102,6 @@
       value: function render() {
         var survey = this.state.survey;
 
-
         console.log('survey-detail', survey);
         return _react2.default.createElement(
           'div',
