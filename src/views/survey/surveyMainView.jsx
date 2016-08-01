@@ -4,8 +4,8 @@ import SurveyDetailPage from './surveyDetail.page';
 import SurveyApi from '../../app/survey/survey.api';
 
 const SurveyMode = {
-    Edit: 'Edit',
-    View: 'View'
+    Edit: 'edit',
+    View: 'view'
 };
 
 class SurveyMainView extends React.Component {
@@ -14,7 +14,7 @@ class SurveyMainView extends React.Component {
         super(props);
 
         this.state = {
-            mode: SurveyMode.Edit,
+            mode: props.mode || SurveyMode.Edit,
             templateName: props.templateName,
             survey: {}
         };

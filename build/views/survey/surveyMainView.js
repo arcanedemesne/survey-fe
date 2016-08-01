@@ -78,8 +78,8 @@
     }
 
     var SurveyMode = {
-        Edit: 'Edit',
-        View: 'View'
+        Edit: 'edit',
+        View: 'view'
     };
 
     var SurveyMainView = function (_React$Component) {
@@ -91,7 +91,7 @@
             var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SurveyMainView).call(this, props));
 
             _this.state = {
-                mode: SurveyMode.Edit,
+                mode: props.mode || SurveyMode.Edit,
                 templateName: props.templateName,
                 survey: {}
             };
