@@ -144,42 +144,4 @@
     }(_react2.default.Component);
 
     exports.default = SurveyEditPage;
-
-
-    //set default props
-    SurveyEditPage.defaultProps = {
-        survey: {}
-    };
-
-    function validateSurvey(survey) {
-
-        return validatePrompts(survey.prompts);
-
-        function validatePrompts(prompts) {
-            var isValidPrompts = true;
-
-            prompts.forEach(function (prompt) {
-                prompt.errors = [];
-                if (!prompt.isRequired) {
-                    return;
-                }
-
-                var hasSelectedOption = false;
-                prompt.options.forEach(function (option) {
-                    if (option.isSelected == true) {
-                        hasSelectedOption = true;
-                        validatePrompts(option.followUpPrompts);
-                    }
-                });
-                if (hasSelectedOption) {
-                    return;
-                }
-
-                prompt.errors = ['This question is required and must be answered.'];
-                isValidPrompts = false;
-            });
-
-            return isValidPrompts;
-        }
-    }
 });
