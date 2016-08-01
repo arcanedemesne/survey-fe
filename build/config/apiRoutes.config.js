@@ -41,8 +41,6 @@
     };
   }();
 
-  var API_ROUTE = 'http://symphonyapi01.azurewebsites.net/';
-
   var ROUTES = {
     SURVEY_TEMPLATE: 'api/questionnaire-templates/{:templateName}',
     SURVEY_SAVE: 'api/questionnaires'
@@ -81,6 +79,6 @@
       populatedRoute = populatedRoute.replace('{:' + mapping.param + '}', mapping.value);
     });
 
-    return API_ROUTE + populatedRoute;
+    return populatedRoute;
   }
 });

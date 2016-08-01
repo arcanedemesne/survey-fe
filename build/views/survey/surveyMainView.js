@@ -93,7 +93,8 @@
             var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SurveyMainView).call(this, props));
 
             _this.state = {
-                mode: props.mode || SurveyMode.Edit,
+                apiEndpoint: props.apiEndpoint,
+                mode: props.mode,
                 templateName: props.templateName,
                 survey: {}
             };
@@ -107,8 +108,7 @@
             value: function componentWillMount() {
                 var _this2 = this;
 
-                //TODO: viewSurvey by engagementId?
-                _survey2.default.viewSurvey(this.state.templateName).then(function (survey) {
+                _survey2.default.viewSurvey(this.state.templateName, this.state.apiEndpoint).then(function (survey) {
                     _this2.setState({ survey: survey });
                 });
             }

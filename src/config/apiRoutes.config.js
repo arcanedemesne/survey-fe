@@ -1,5 +1,3 @@
-const API_ROUTE = 'http://symphonyapi01.azurewebsites.net/';
-
 const ROUTES = {
   SURVEY_TEMPLATE: 'api/questionnaire-templates/{:templateName}',
   SURVEY_SAVE:  'api/questionnaires'
@@ -24,5 +22,5 @@ function constructRoute(route, propMappings = []) {
     populatedRoute = populatedRoute.replace('{:' + mapping.param + '}', mapping.value);
   });
 
-  return API_ROUTE + populatedRoute;
+  return populatedRoute;
 }

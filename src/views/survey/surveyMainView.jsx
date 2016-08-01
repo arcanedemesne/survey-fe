@@ -15,7 +15,8 @@ class SurveyMainView extends React.Component {
         super(props);
 
         this.state = {
-            mode: props.mode || SurveyMode.Edit,
+            apiEndpoint: props.apiEndpoint,
+            mode: props.mode,
             templateName: props.templateName,
             survey: {}
         };
@@ -24,8 +25,7 @@ class SurveyMainView extends React.Component {
     }
 
     componentWillMount() {
-        //TODO: viewSurvey by engagementId?
-        SurveyApi.viewSurvey(this.state.templateName).then((survey) => {
+        SurveyApi.viewSurvey(this.state.templateName, this.state.apiEndpoint).then((survey) => {
             this.setState({ survey });
         });
     }

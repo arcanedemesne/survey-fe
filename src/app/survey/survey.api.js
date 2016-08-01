@@ -2,9 +2,9 @@ import { GET, POST } from '../helpers/api.utility';
 import API_ROUTES from '../../config/apiRoutes.config';
 
 class SurveyApi {
-    static viewSurvey(templateName) {
+    static viewSurvey(templateName, apiEndpoint) {
         return new Promise((resolve, reject) => {
-            return GET(API_ROUTES.surveyTemplate(templateName))
+            return GET(apiEndpoint + API_ROUTES.surveyTemplate(templateName))
                 .then((template) => {
                     return resolve(Object.assign({}, template));
                 })
@@ -13,9 +13,9 @@ class SurveyApi {
         });
     }
 
-    static saveSurvey(survey) {
+    static saveSurvey(survey, apiEndpoint) {
         return new Promise((resolve, reject) => {
-            return sendSurveySaveToServer(survey)
+            return sendSurveySaveToServer(apiEndpoint, survey)
                 .then(() => {
                     return resolve();
                 })
@@ -25,7 +25,7 @@ class SurveyApi {
     }
 }
 
-function sendSurveySaveToServer(survey) {
+function sendSurveySaveToServer(apiEndpoint, survey) {
     survey.ownerId = 'LoremIpsum'; // TODO: this will come from the context passed in when it is converted into a module/component instead of a web app.
     survey.userId = 'LoremIpsum'; // TODO: remove when BE provides this
 
@@ -36,7 +36,7 @@ function sendSurveySaveToServer(survey) {
         responses: collectSurveyPromptResponses(survey.prompts)
     };
 
-    return POST(API_ROUTES.surveySave(), request);
+    return POST(apiEndpoint + API_ROUTES.surveySave(), request);
 
 
     function collectSurveyPromptResponses(prompts) {
