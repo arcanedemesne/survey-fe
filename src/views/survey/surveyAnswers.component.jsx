@@ -4,6 +4,8 @@ import React  from 'react';
 class SurveyAnswersComponent extends React.Component {
   constructor(props) {
     super(props);
+
+    console.log('answer prompts', props.prompts);
   }
 
   render() {

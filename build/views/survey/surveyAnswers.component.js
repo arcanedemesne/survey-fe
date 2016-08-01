@@ -79,7 +79,10 @@
     function SurveyAnswersComponent(props) {
       _classCallCheck(this, SurveyAnswersComponent);
 
-      return _possibleConstructorReturn(this, Object.getPrototypeOf(SurveyAnswersComponent).call(this, props));
+      var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SurveyAnswersComponent).call(this, props));
+
+      console.log('answer prompts', props.prompts);
+      return _this;
     }
 
     _createClass(SurveyAnswersComponent, [{

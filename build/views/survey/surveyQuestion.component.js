@@ -1,16 +1,16 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(['exports', 'react', './fields/text.surveyField', './fields/radios.surveyField', './fields/select.surveyField'], factory);
+    define(['exports', 'react'], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require('react'), require('./fields/text.surveyField'), require('./fields/radios.surveyField'), require('./fields/select.surveyField'));
+    factory(exports, require('react'));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.react, global.text, global.radios, global.select);
+    factory(mod.exports, global.react);
     global.surveyQuestionComponent = mod.exports;
   }
-})(this, function (exports, _react, _text, _radios, _select) {
+})(this, function (exports, _react) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -18,12 +18,6 @@
   });
 
   var _react2 = _interopRequireDefault(_react);
-
-  var _text2 = _interopRequireDefault(_text);
-
-  var _radios2 = _interopRequireDefault(_radios);
-
-  var _select2 = _interopRequireDefault(_select);
 
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
@@ -87,7 +81,7 @@
 
       var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SurveyQuestionComponent).call(this, props));
 
-      console.log('prompts', props.prompts);
+      console.log('question prompts', props.prompts);
       return _this;
     }
 
