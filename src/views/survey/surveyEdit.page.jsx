@@ -10,7 +10,7 @@ export default class SurveyEditPage extends React.Component {
             survey: props.survey
         };
 
-        this.saveSurvey = saveSurvey.bind(this);
+        this.saveSurvey = this.saveSurvey.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
