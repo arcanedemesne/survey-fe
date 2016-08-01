@@ -6,7 +6,7 @@ class SurveyApi {
         return new Promise((resolve, reject) => {
             return GET(API_ROUTES.surveyTemplate(templateName))
                 .then((template) => {
-                    return resolve(template);
+                    return resolve(Object.assign({}, template));
                 })
                 .catch((error) => { return reject(error); });
 

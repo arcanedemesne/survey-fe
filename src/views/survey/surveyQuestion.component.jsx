@@ -6,6 +6,8 @@ import SelectSurveyField from './fields/select.surveyField';
 class SurveyQuestionComponent extends React.Component {
   constructor(props) {
     super(props);
+
+      console.log('prompts', props.prompts);
   }
 
   render() {

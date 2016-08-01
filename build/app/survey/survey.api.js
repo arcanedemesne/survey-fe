@@ -69,7 +69,7 @@
             value: function viewSurvey(templateName) {
                 return new Promise(function (resolve, reject) {
                     return (0, _api.GET)(_apiRoutes2.default.surveyTemplate(templateName)).then(function (template) {
-                        return resolve(template);
+                        return resolve(Object.assign({}, template));
                     }).catch(function (error) {
                         return reject(error);
                     });

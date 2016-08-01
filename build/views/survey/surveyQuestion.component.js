@@ -97,7 +97,10 @@
     function SurveyQuestionComponent(props) {
       _classCallCheck(this, SurveyQuestionComponent);
 
-      return _possibleConstructorReturn(this, Object.getPrototypeOf(SurveyQuestionComponent).call(this, props));
+      var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SurveyQuestionComponent).call(this, props));
+
+      console.log('prompts', props.prompts);
+      return _this;
     }
 
     _createClass(SurveyQuestionComponent, [{
