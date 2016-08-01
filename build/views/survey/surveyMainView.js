@@ -125,7 +125,7 @@
                     return;
                 }
 
-                _survey2.default.saveSurvey(survey).then(function (response) {
+                _survey2.default.saveSurvey(survey, this.state.apiEndpoint).then(function (response) {
                     _this3.setState({ mode: SurveyMode.View });
                 }).catch(function (error) {
                     console.log(error);

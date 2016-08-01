@@ -38,7 +38,7 @@ class SurveyMainView extends React.Component {
             return;
         }
 
-        SurveyApi.saveSurvey(survey).then((response) => {
+        SurveyApi.saveSurvey(survey, this.state.apiEndpoint).then((response) => {
             this.setState({ mode: SurveyMode.View });
         }).catch((error) => {
             console.log(error);
