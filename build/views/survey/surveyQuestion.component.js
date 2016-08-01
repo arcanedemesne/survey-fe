@@ -189,12 +189,12 @@
 
             return _react2.default.createElement(
               'div',
-              null,
+              { key: prompt.id },
               field,
               prompt.errors.map(function (error) {
                 return _react2.default.createElement(
                   'div',
-                  { className: 'error' },
+                  { key: prompt.id + 'error', className: 'error' },
                   error
                 );
               }),
