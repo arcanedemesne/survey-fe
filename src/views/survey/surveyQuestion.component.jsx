@@ -71,7 +71,6 @@ class SurveyQuestionComponent extends React.Component {
     };
 
     return <div>
-
       { this.prompts.map((prompt) => {
         prompt.errors = prompt.errors || [];
 
@@ -89,13 +88,14 @@ class SurveyQuestionComponent extends React.Component {
         }
 
         return (
-          <div>
+          <div key={prompt.id}>
             { field }
             { prompt.errors.map((error) => {
-              return <div className="error">{ error }</div>
+              return <div key={prompt.id + 'error'} className="error">{ error }</div>
             })}
             { this.renderFollowups(prompt) }
-          </div>);
+          </div>
+        );
       })}
     </div>
   }
