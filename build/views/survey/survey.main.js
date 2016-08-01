@@ -8,7 +8,7 @@
             exports: {}
         };
         factory(mod.exports, global.react, global.survey, global.surveyDetail, global.surveyEdit, global.app);
-        global.surveyMainView = mod.exports;
+        global.surveyMain = mod.exports;
     }
 })(this, function (exports, _react, _survey, _surveyDetail, _surveyEdit) {
     'use strict';
@@ -84,13 +84,13 @@
         View: 'view'
     };
 
-    var SurveyMainView = function (_React$Component) {
-        _inherits(SurveyMainView, _React$Component);
+    var Survey = function (_React$Component) {
+        _inherits(Survey, _React$Component);
 
-        function SurveyMainView(props) {
-            _classCallCheck(this, SurveyMainView);
+        function Survey(props) {
+            _classCallCheck(this, Survey);
 
-            var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SurveyMainView).call(this, props));
+            var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Survey).call(this, props));
 
             _this.state = {
                 apiEndpoint: props.apiEndpoint,
@@ -104,7 +104,7 @@
             return _this;
         }
 
-        _createClass(SurveyMainView, [{
+        _createClass(Survey, [{
             key: 'componentWillMount',
             value: function componentWillMount() {
                 var _this2 = this;
@@ -198,8 +198,8 @@
             }
         }]);
 
-        return SurveyMainView;
+        return Survey;
     }(_react2.default.Component);
 
-    exports.default = SurveyMainView;
+    exports.default = Survey;
 });

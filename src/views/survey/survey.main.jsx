@@ -9,7 +9,7 @@ const SurveyMode = {
     View: 'view'
 };
 
-class SurveyMainView extends React.Component {
+class Survey extends React.Component {
 
     constructor(props) {
         super(props);
@@ -98,4 +98,4 @@ class SurveyMainView extends React.Component {
     }
 }
 
-export default SurveyMainView;
+export default Survey;
