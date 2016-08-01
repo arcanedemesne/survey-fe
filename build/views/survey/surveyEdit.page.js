@@ -160,7 +160,8 @@
         }, {
             key: 'save',
             value: function save() {
-                var survey = this.state;
+                var survey = this.state.survey;
+
                 if (!validateSurvey(survey)) {
                     this.setState({ survey: survey });
                     return;
