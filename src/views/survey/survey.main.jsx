@@ -33,7 +33,6 @@ class Survey extends React.Component {
 
     saveSurvey() {
         let { survey } = this.state;
-        console.log(survey);
         if (!this.validateSurvey(survey)) {
             this.setState({ survey: survey });
             return;
