@@ -69,11 +69,11 @@ class SurveyQuestionComponent extends React.Component {
         </div>
       )
     };
-
+    let count = 0;
     return <div>
       { this.prompts.map((prompt) => {
         prompt.errors = prompt.errors || [];
-
+        count++;
         let field;
         switch (prompt.displayHint) {
           case 'select':
@@ -88,10 +88,10 @@ class SurveyQuestionComponent extends React.Component {
         }
 
         return (
-          <div key={prompt.id}>
+          <div key={'field' + count}>
             { field }
             { prompt.errors.map((error) => {
-              return <div key={prompt.id + 'error'} className="error">{ error }</div>
+              return <div className="error">{ error }</div>
             })}
             { this.renderFollowups(prompt) }
           </div>

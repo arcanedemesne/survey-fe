@@ -167,13 +167,13 @@
             _react2.default.createElement(SurveyQuestionComponent, { prompts: followUps })
           );
         };
-
+        var count = 0;
         return _react2.default.createElement(
           'div',
           null,
           this.prompts.map(function (prompt) {
             prompt.errors = prompt.errors || [];
-
+            count++;
             var field = void 0;
             switch (prompt.displayHint) {
               case 'select':
@@ -189,12 +189,12 @@
 
             return _react2.default.createElement(
               'div',
-              { key: prompt.id },
+              { key: 'field' + count },
               field,
               prompt.errors.map(function (error) {
                 return _react2.default.createElement(
                   'div',
-                  { key: prompt.id + 'error', className: 'error' },
+                  { className: 'error' },
                   error
                 );
               }),
