@@ -99,7 +99,7 @@
                 survey: {}
             };
 
-            _this.surveyComplete = _this.surveyComplete.bind(_this);
+            _this.saveSurvey = _this.saveSurvey.bind(_this);
             return _this;
         }
 
@@ -113,9 +113,23 @@
                 });
             }
         }, {
-            key: 'surveyComplete',
-            value: function surveyComplete() {
-                this.setState({ mode: SurveyMode.View });
+            key: 'saveSurvey',
+            value: function saveSurvey() {
+                var _this3 = this;
+
+                var survey = this.state.survey;
+
+                console.log(survey);
+                if (!validateSurvey(survey)) {
+                    this.setState({ survey: survey });
+                    return;
+                }
+
+                _survey2.default.saveSurvey(survey).then(function (response) {
+                    _this3.setState({ mode: SurveyMode.View });
+                }).catch(function (error) {
+                    console.log(error);
+                });
             }
         }, {
             key: 'render',
@@ -128,7 +142,7 @@
                     return _react2.default.createElement(
                         'div',
                         null,
-                        mode == SurveyMode.Edit && _react2.default.createElement(_surveyEdit2.default, { survey: survey, surveyComplete: this.surveyComplete }),
+                        mode == SurveyMode.Edit && _react2.default.createElement(_surveyEdit2.default, { survey: survey, saveSurvey: this.saveSurvey }),
                         mode == SurveyMode.View && _react2.default.createElement(_surveyDetail2.default, { survey: survey })
                     );
                 } else {

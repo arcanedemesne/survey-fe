@@ -1,5 +1,4 @@
 import React  from 'react';
-import SurveyApi from '../../app/survey/survey.api';
 import SurveyQuestionComponent from './surveyQuestion.component';
 
 export default class SurveyEditPage extends React.Component {
@@ -9,28 +8,12 @@ export default class SurveyEditPage extends React.Component {
         this.state = {
             survey: props.survey
         };
-
-        this.saveSurvey = this.saveSurvey.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.survey) {
             this.setState({ survey: nextProps.survey });
         }
-    }
-
-    saveSurvey() {
-        let { survey } = this.state;
-        if (!validateSurvey(survey)) {
-            this.setState({ survey: survey });
-            return;
-        }
-
-        SurveyApi.saveSurvey(survey).then((response) => {
-            this.props.surveyComplete();
-        }).catch((error) => {
-            console.log(error);
-        });
     }
 
     render() {
@@ -45,7 +28,7 @@ export default class SurveyEditPage extends React.Component {
                         <SurveyQuestionComponent prompts={ survey.prompts }/>
 
                         <div>
-                            <button type="button" className="button" onClick={this.saveSurvey}>Save</button>
+                            <button type="button" className="button" onClick={this.props.saveSurvey}>Save</button>
                         </div>
                     </fieldset>
                 </div>

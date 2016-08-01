@@ -1,16 +1,16 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define(['exports', 'react', '../../app/survey/survey.api', './surveyQuestion.component'], factory);
+        define(['exports', 'react', './surveyQuestion.component'], factory);
     } else if (typeof exports !== "undefined") {
-        factory(exports, require('react'), require('../../app/survey/survey.api'), require('./surveyQuestion.component'));
+        factory(exports, require('react'), require('./surveyQuestion.component'));
     } else {
         var mod = {
             exports: {}
         };
-        factory(mod.exports, global.react, global.survey, global.surveyQuestion);
+        factory(mod.exports, global.react, global.surveyQuestion);
         global.surveyEditPage = mod.exports;
     }
-})(this, function (exports, _react, _survey, _surveyQuestion) {
+})(this, function (exports, _react, _surveyQuestion) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -18,8 +18,6 @@
     });
 
     var _react2 = _interopRequireDefault(_react);
-
-    var _survey2 = _interopRequireDefault(_survey);
 
     var _surveyQuestion2 = _interopRequireDefault(_surveyQuestion);
 
@@ -88,8 +86,6 @@
             _this.state = {
                 survey: props.survey
             };
-
-            _this.saveSurvey = _this.saveSurvey.bind(_this);
             return _this;
         }
 
@@ -99,24 +95,6 @@
                 if (nextProps.survey) {
                     this.setState({ survey: nextProps.survey });
                 }
-            }
-        }, {
-            key: 'saveSurvey',
-            value: function saveSurvey() {
-                var _this2 = this;
-
-                var survey = this.state.survey;
-
-                if (!validateSurvey(survey)) {
-                    this.setState({ survey: survey });
-                    return;
-                }
-
-                _survey2.default.saveSurvey(survey).then(function (response) {
-                    _this2.props.surveyComplete();
-                }).catch(function (error) {
-                    console.log(error);
-                });
             }
         }, {
             key: 'render',
@@ -146,7 +124,7 @@
                                 null,
                                 _react2.default.createElement(
                                     'button',
-                                    { type: 'button', className: 'button', onClick: this.saveSurvey },
+                                    { type: 'button', className: 'button', onClick: this.props.saveSurvey },
                                     'Save'
                                 )
                             )
