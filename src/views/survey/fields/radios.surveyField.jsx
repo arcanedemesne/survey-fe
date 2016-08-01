@@ -1,5 +1,5 @@
 import React  from 'react';
-/*import { RadioGroup, Radio } from 'react-radio-group';*/
+import { RadioGroup, Radio } from 'react-radio-group';
 
 class RadiosSurveyField extends React.Component {
   constructor(props) { super(props); }
@@ -15,7 +15,7 @@ class RadiosSurveyField extends React.Component {
       //TODO: figure out why react-radio-group isn't working in Symphony
       <div>
         <label>{ this.labelText }</label>
-          {/*<RadioGroup
+          {<RadioGroup
           name={ this.name + '' }
           selectedValue={ this.defaultValue }
           onChange={ this.onChange }>
@@ -24,7 +24,7 @@ class RadiosSurveyField extends React.Component {
               <span key={ 'radiooption' + option.id }><Radio value={ option.id } /> { option.displayName }</span>
             );
           })}
-        </RadioGroup>*/}
+        </RadioGroup>}
       </div>
     );
   }

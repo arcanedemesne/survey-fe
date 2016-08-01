@@ -88,7 +88,7 @@ class SurveyQuestionComponent extends React.Component {
         }
 
         return (
-          <div key={'field' + count}>
+          <div>
             { field }
             { prompt.errors.map((error) => {
               return <div className="error">{ error }</div>
