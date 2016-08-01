@@ -106,7 +106,6 @@
         var _this2 = this;
 
         this.prompts = this.props.prompts;
-        this.keyIncriment = this.props.keyIncriment || 0;
 
         this.renderTextField = function (prompt) {
           return _react2.default.createElement(_text2.default, {
@@ -171,7 +170,7 @@
 
         return _react2.default.createElement(
           'div',
-          { key: 'survey-question-component' + this.keyIncriment },
+          null,
           this.prompts.map(function (prompt) {
             prompt.errors = prompt.errors || [];
 
