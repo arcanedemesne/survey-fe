@@ -21,7 +21,7 @@ class SurveyMainView extends React.Component {
             survey: {}
         };
 
-        this.surveyComplete = this.surveyComplete.bind(this);
+        this.saveSurvey = this.saveSurvey.bind(this);
     }
 
     componentWillMount() {
@@ -30,8 +30,19 @@ class SurveyMainView extends React.Component {
         });
     }
 
-    surveyComplete() {
-        this.setState({ mode: SurveyMode.View });
+    saveSurvey() {
+        let { survey } = this.state;
+        console.log(survey);
+        if (!validateSurvey(survey)) {
+            this.setState({ survey: survey });
+            return;
+        }
+
+        SurveyApi.saveSurvey(survey).then((response) => {
+            this.setState({ mode: SurveyMode.View });
+        }).catch((error) => {
+            console.log(error);
+        });
     }
 
     render() {
@@ -39,7 +50,7 @@ class SurveyMainView extends React.Component {
         if (survey) {
             return (
                 <div>
-                    { mode == SurveyMode.Edit && <SurveyEditPage survey={survey} surveyComplete={this.surveyComplete} /> }
+                    { mode == SurveyMode.Edit && <SurveyEditPage survey={survey} saveSurvey={this.saveSurvey} /> }
                     { mode == SurveyMode.View && <SurveyDetailPage survey={survey} /> }
                 </div>
             );
