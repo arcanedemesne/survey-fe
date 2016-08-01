@@ -97,7 +97,7 @@
         return _react2.default.createElement(
           'div',
           null,
-          this.props.propmts.length,
+          this.props.prompts.length,
           ' prompt(s)'
         );
       }
