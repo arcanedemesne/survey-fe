@@ -66,9 +66,9 @@
 
         _createClass(SurveyApi, null, [{
             key: 'viewSurvey',
-            value: function viewSurvey(templateName) {
+            value: function viewSurvey(templateName, apiEndpoint) {
                 return new Promise(function (resolve, reject) {
-                    return (0, _api.GET)(_apiRoutes2.default.surveyTemplate(templateName)).then(function (template) {
+                    return (0, _api.GET)(apiEndpoint + _apiRoutes2.default.surveyTemplate(templateName)).then(function (template) {
                         return resolve(Object.assign({}, template));
                     }).catch(function (error) {
                         return reject(error);
@@ -77,9 +77,9 @@
             }
         }, {
             key: 'saveSurvey',
-            value: function saveSurvey(survey) {
+            value: function saveSurvey(survey, apiEndpoint) {
                 return new Promise(function (resolve, reject) {
-                    return sendSurveySaveToServer(survey).then(function () {
+                    return sendSurveySaveToServer(apiEndpoint, survey).then(function () {
                         return resolve();
                     }).catch(function (error) {
                         return reject(error);
@@ -91,7 +91,7 @@
         return SurveyApi;
     }();
 
-    function sendSurveySaveToServer(survey) {
+    function sendSurveySaveToServer(apiEndpoint, survey) {
         survey.ownerId = 'LoremIpsum'; // TODO: this will come from the context passed in when it is converted into a module/component instead of a web app.
         survey.userId = 'LoremIpsum'; // TODO: remove when BE provides this
 
@@ -102,7 +102,7 @@
             responses: collectSurveyPromptResponses(survey.prompts)
         };
 
-        return (0, _api.POST)(_apiRoutes2.default.surveySave(), request);
+        return (0, _api.POST)(apiEndpoint + _apiRoutes2.default.surveySave(), request);
 
         function collectSurveyPromptResponses(prompts) {
             var responses = [];
