@@ -1,13 +1,13 @@
 import React  from 'react';
-import TextSurveyField from './fields/text.surveyField';
+/*import TextSurveyField from './fields/text.surveyField';
 import RadiosSurveyField from './fields/radios.surveyField';
-import SelectSurveyField from './fields/select.surveyField';
+import SelectSurveyField from './fields/select.surveyField';*/
 
 class SurveyQuestionComponent extends React.Component {
   constructor(props) {
     super(props);
 
-      console.log('prompts', props.prompts);
+      console.log('question prompts', props.prompts);
   }
 
   render() {
