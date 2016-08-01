@@ -12,7 +12,7 @@ class TextSurveyField extends React.Component {
 
     return (
       <div>
-        <label>{ this.labelText }</label>
+        <label htmlFor={this.name}>{ this.labelText }</label>
         { this.options.map((option) => {
           return (
             <input type="text"

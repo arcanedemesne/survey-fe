@@ -12,7 +12,7 @@ class SelectSurveyField extends React.Component {
 
     return (
       <div>
-        <label>{ this.labelText }</label>
+        <label htmlFor={this.name}>{ this.labelText }</label>
         <select
           name={ this.name }
           onChange={ (event) => {
