@@ -155,8 +155,8 @@
                 } else {
                     return _react2.default.createElement(
                         'div',
-                        { className: 'error' },
-                        'No prompts found.'
+                        null,
+                        'loading prompts...'
                     );
                 }
             }

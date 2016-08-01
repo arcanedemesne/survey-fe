@@ -51,7 +51,7 @@ export default class SurveyEditPage extends React.Component {
                 </div>
             );
         } else {
-            return (<div className="error">No prompts found.</div>);
+            return (<div>loading prompts...</div>);
         }
     }
 }
