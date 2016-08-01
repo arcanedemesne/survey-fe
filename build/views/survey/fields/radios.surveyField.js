@@ -1,16 +1,16 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(['exports', 'react', 'react-radio-group'], factory);
+    define(['exports', 'react'], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require('react'), require('react-radio-group'));
+    factory(exports, require('react'));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.react, global.reactRadioGroup);
+    factory(mod.exports, global.react);
     global.radiosSurveyField = mod.exports;
   }
-})(this, function (exports, _react, _reactRadioGroup) {
+})(this, function (exports, _react) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -73,7 +73,10 @@
     if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
   }
 
-  var RadiosSurveyField = function (_React$Component) {
+  var
+  /*import { RadioGroup, Radio } from 'react-radio-group';*/
+
+  RadiosSurveyField = function (_React$Component) {
     _inherits(RadiosSurveyField, _React$Component);
 
     function RadiosSurveyField(props) {
@@ -98,22 +101,6 @@
             'label',
             null,
             this.labelText
-          ),
-          _react2.default.createElement(
-            _reactRadioGroup.RadioGroup,
-            {
-              name: this.name + '',
-              selectedValue: this.defaultValue,
-              onChange: this.onChange },
-            this.options.map(function (option) {
-              return _react2.default.createElement(
-                'span',
-                { key: 'radiooption' + option.id },
-                _react2.default.createElement(_reactRadioGroup.Radio, { value: option.id }),
-                ' ',
-                option.displayName
-              );
-            })
           )
         );
       }
