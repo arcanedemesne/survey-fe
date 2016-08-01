@@ -40,7 +40,7 @@ export default class SurveyEditPage extends React.Component {
     }
 
     save() {
-        let survey = this.state;
+        let { survey } = this.state;
         if (!validateSurvey(survey)) {
             this.setState({ survey: survey });
             return;
