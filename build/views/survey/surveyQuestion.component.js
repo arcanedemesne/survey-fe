@@ -189,12 +189,12 @@
 
             return _react2.default.createElement(
               'div',
-              { key: 'field' + count },
+              null,
               field,
               prompt.errors.map(function (error) {
                 return _react2.default.createElement(
                   'div',
-                  { key: 'error' + count, className: 'error' },
+                  { className: 'error' },
                   error
                 );
               }),

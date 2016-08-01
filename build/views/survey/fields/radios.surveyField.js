@@ -1,16 +1,16 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(['exports', 'react'], factory);
+    define(['exports', 'react', 'react-radio-group'], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require('react'));
+    factory(exports, require('react'), require('react-radio-group'));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.react);
+    factory(mod.exports, global.react, global.reactRadioGroup);
     global.radiosSurveyField = mod.exports;
   }
-})(this, function (exports, _react) {
+})(this, function (exports, _react, _reactRadioGroup) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -73,10 +73,7 @@
     if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
   }
 
-  var
-  /*import { RadioGroup, Radio } from 'react-radio-group';*/
-
-  RadiosSurveyField = function (_React$Component) {
+  var RadiosSurveyField = function (_React$Component) {
     _inherits(RadiosSurveyField, _React$Component);
 
     function RadiosSurveyField(props) {
@@ -94,13 +91,32 @@
         this.defaultValue = this.props.defaultValue;
         this.onChange = this.props.onChange;
 
-        return _react2.default.createElement(
-          'div',
-          null,
+        return (
+          //TODO: figure out why react-radio-group isn't working in Symphony
           _react2.default.createElement(
-            'label',
+            'div',
             null,
-            this.labelText
+            _react2.default.createElement(
+              'label',
+              null,
+              this.labelText
+            ),
+            _react2.default.createElement(
+              _reactRadioGroup.RadioGroup,
+              {
+                name: this.name + '',
+                selectedValue: this.defaultValue,
+                onChange: this.onChange },
+              this.options.map(function (option) {
+                return _react2.default.createElement(
+                  'span',
+                  { key: 'radiooption' + option.id },
+                  _react2.default.createElement(_reactRadioGroup.Radio, { value: option.id }),
+                  ' ',
+                  option.displayName
+                );
+              })
+            )
           )
         );
       }
