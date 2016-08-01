@@ -1,21 +1,15 @@
 import React  from 'react';
-/*import TextSurveyField from './fields/text.surveyField';
+import TextSurveyField from './fields/text.surveyField';
 import RadiosSurveyField from './fields/radios.surveyField';
-import SelectSurveyField from './fields/select.surveyField';*/
+import SelectSurveyField from './fields/select.surveyField';
 
 class SurveyQuestionComponent extends React.Component {
+
   constructor(props) {
     super(props);
-
-      console.log('question prompts', props.prompts);
   }
 
   render() {
-      return (
-          <div>{this.props.prompts.length} prompt(s)</div>
-      );
-  }
-  /*render() {
     this.prompts = this.props.prompts;
     this.keyIncriment = this.props.keyIncriment || 0;
 
@@ -120,6 +114,6 @@ class SurveyQuestionComponent extends React.Component {
     });
 
     return followups;
-  }*/
+  }
 }
 export default SurveyQuestionComponent;

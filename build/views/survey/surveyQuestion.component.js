@@ -1,16 +1,16 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(['exports', 'react'], factory);
+    define(['exports', 'react', './fields/text.surveyField', './fields/radios.surveyField', './fields/select.surveyField'], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require('react'));
+    factory(exports, require('react'), require('./fields/text.surveyField'), require('./fields/radios.surveyField'), require('./fields/select.surveyField'));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.react);
+    factory(mod.exports, global.react, global.text, global.radios, global.select);
     global.surveyQuestionComponent = mod.exports;
   }
-})(this, function (exports, _react) {
+})(this, function (exports, _react, _text, _radios, _select) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -19,10 +19,28 @@
 
   var _react2 = _interopRequireDefault(_react);
 
+  var _text2 = _interopRequireDefault(_text);
+
+  var _radios2 = _interopRequireDefault(_radios);
+
+  var _select2 = _interopRequireDefault(_select);
+
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
       default: obj
     };
+  }
+
+  function _toConsumableArray(arr) {
+    if (Array.isArray(arr)) {
+      for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+        arr2[i] = arr[i];
+      }
+
+      return arr2;
+    } else {
+      return Array.from(arr);
+    }
   }
 
   function _classCallCheck(instance, Constructor) {
@@ -79,21 +97,127 @@
     function SurveyQuestionComponent(props) {
       _classCallCheck(this, SurveyQuestionComponent);
 
-      var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SurveyQuestionComponent).call(this, props));
-
-      console.log('question prompts', props.prompts);
-      return _this;
+      return _possibleConstructorReturn(this, Object.getPrototypeOf(SurveyQuestionComponent).call(this, props));
     }
 
     _createClass(SurveyQuestionComponent, [{
       key: 'render',
       value: function render() {
+        var _this2 = this;
+
+        this.prompts = this.props.prompts;
+        this.keyIncriment = this.props.keyIncriment || 0;
+
+        this.renderTextField = function (prompt) {
+          return _react2.default.createElement(_text2.default, {
+            name: prompt.name + prompt.id,
+            labelText: prompt.text,
+            options: prompt.options,
+            isRequired: prompt.isRequired,
+            onChange: function onChange(optionId, customValue) {
+              var option = prompt.options.find(function (o) {
+                return o.id == optionId;
+              });
+              option.isSelected = true;
+              option.value = customValue;
+              _this2.forceUpdate();
+            },
+            defaultValue: prompt.value
+          });
+        };
+        this.renderSelectField = function (prompt) {
+          return _react2.default.createElement(_select2.default, {
+            name: prompt.name + prompt.id,
+            labelText: prompt.text,
+            options: prompt.options,
+            isRequired: prompt.isRequired,
+            onChange: function onChange(optionId) {
+              var option = prompt.options.find(function (o) {
+                return o.id == optionId;
+              });
+              option.isSelected = true;
+              _this2.forceUpdate();
+            },
+            defaultValue: prompt.value
+          });
+        };
+        this.renderRadiosField = function (prompt) {
+          return _react2.default.createElement(_radios2.default, {
+            name: prompt.name + prompt.id,
+            labelText: prompt.text,
+            options: prompt.options,
+            isRequired: prompt.isRequired,
+            onChange: function onChange(optionId) {
+              prompt.options.forEach(function (option) {
+                option.isSelected = false;
+              });
+              var option = prompt.options.find(function (o) {
+                return o.id == optionId;
+              });
+              option.isSelected = true;
+              _this2.forceUpdate();
+            },
+            defaultValue: prompt.value
+          });
+        };
+        this.renderFollowups = function (prompt) {
+          var followUps = _this2.getFollowUpPrompts(prompt);
+          return _react2.default.createElement(
+            'div',
+            { className: 'survey-question-followups' },
+            _react2.default.createElement(SurveyQuestionComponent, { prompts: followUps })
+          );
+        };
+
         return _react2.default.createElement(
           'div',
-          null,
-          this.props.prompts.length,
-          ' prompt(s)'
+          { key: 'survey-question-component' + this.keyIncriment },
+          this.prompts.map(function (prompt) {
+            prompt.errors = prompt.errors || [];
+
+            var field = void 0;
+            switch (prompt.displayHint) {
+              case 'select':
+                field = _this2.renderSelectField(prompt);
+                break;
+              case 'radios':
+                field = _this2.renderRadiosField(prompt);
+                break;
+              default:
+                field = _this2.renderTextField(prompt);
+                break;
+            }
+
+            return _react2.default.createElement(
+              'div',
+              { key: 'prompt-field-' + prompt.id },
+              field,
+              prompt.errors.map(function (error) {
+                return _react2.default.createElement(
+                  'div',
+                  { className: 'error' },
+                  error
+                );
+              }),
+              _this2.renderFollowups(prompt)
+            );
+          })
         );
+      }
+    }, {
+      key: 'getFollowUpPrompts',
+      value: function getFollowUpPrompts(prompt) {
+        var followups = [];
+
+        prompt.options.forEach(function (option) {
+          if (!option.isSelected) {
+            return;
+          }
+
+          followups = [].concat(_toConsumableArray(followups), _toConsumableArray(option.followUpPrompts));
+        });
+
+        return followups;
       }
     }]);
 
