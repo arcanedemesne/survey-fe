@@ -36,7 +36,6 @@ function sendSurveySaveToServer(survey) {
         responses: collectSurveyPromptResponses(survey.prompts)
     };
 
-    console.log('request', request);
     return POST(API_ROUTES.surveySave(), request);
 
 

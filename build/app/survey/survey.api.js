@@ -102,7 +102,6 @@
             responses: collectSurveyPromptResponses(survey.prompts)
         };
 
-        console.log('request', request);
         return (0, _api.POST)(_apiRoutes2.default.surveySave(), request);
 
         function collectSurveyPromptResponses(prompts) {

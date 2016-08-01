@@ -97,6 +97,8 @@
                 templateName: props.templateName,
                 survey: {}
             };
+
+            _this.surveyfinished = _this.surveyfinished.bind(_this);
             return _this;
         }
 
@@ -111,6 +113,11 @@
                 });
             }
         }, {
+            key: 'surveyComplete',
+            value: function surveyComplete() {
+                this.setState({ mode: SurveyMode.View });
+            }
+        }, {
             key: 'render',
             value: function render() {
                 var _state = this.state;
@@ -121,7 +128,7 @@
                     return _react2.default.createElement(
                         'div',
                         null,
-                        mode == SurveyMode.Edit && _react2.default.createElement(_surveyEdit2.default, { survey: survey }),
+                        mode == SurveyMode.Edit && _react2.default.createElement(_surveyEdit2.default, { survey: survey, surveyComplete: this.surveyComplete }),
                         mode == SurveyMode.View && _react2.default.createElement(_surveyDetail2.default, { survey: survey })
                     );
                 } else {

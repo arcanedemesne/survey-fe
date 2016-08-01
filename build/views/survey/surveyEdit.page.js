@@ -88,6 +88,8 @@
             _this.state = {
                 survey: props.survey
             };
+
+            _this.saveSurvey = saveSurvey.bind(_this);
             return _this;
         }
 
@@ -97,6 +99,24 @@
                 if (nextProps.survey) {
                     this.setState({ survey: nextProps.survey });
                 }
+            }
+        }, {
+            key: 'saveSurvey',
+            value: function saveSurvey() {
+                var _this2 = this;
+
+                var survey = this.state.survey;
+
+                if (!validateSurvey(survey)) {
+                    this.setState({ survey: survey });
+                    return;
+                }
+
+                _survey2.default.saveSurvey(survey).then(function (response) {
+                    _this2.props.surveyComplete();
+                }).catch(function (error) {
+                    console.log(error);
+                });
             }
         }, {
             key: 'render',
@@ -126,7 +146,7 @@
                                 null,
                                 _react2.default.createElement(
                                     'button',
-                                    { type: 'button', className: 'button', onClick: this.save.bind(this) },
+                                    { type: 'button', className: 'button', onClick: this.saveSurvey },
                                     'Save'
                                 )
                             )
@@ -139,18 +159,6 @@
                         'No prompts found.'
                     );
                 }
-            }
-        }, {
-            key: 'save',
-            value: function save() {
-                var survey = this.state.survey;
-
-                if (!validateSurvey(survey)) {
-                    this.setState({ survey: survey });
-                    return;
-                }
-
-                _survey2.default.saveSurvey(survey);
             }
         }]);
 

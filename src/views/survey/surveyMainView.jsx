@@ -19,6 +19,8 @@ class SurveyMainView extends React.Component {
             templateName: props.templateName,
             survey: {}
         };
+
+        this.surveyfinished = this.surveyfinished.bind(this);
     }
 
     componentWillMount() {
@@ -28,12 +30,16 @@ class SurveyMainView extends React.Component {
         });
     }
 
+    surveyComplete() {
+        this.setState({ mode: SurveyMode.View });
+    }
+
     render() {
         const { mode, survey } = this.state;
         if (survey) {
             return (
                 <div>
-                    { mode == SurveyMode.Edit && <SurveyEditPage survey={survey} /> }
+                    { mode == SurveyMode.Edit && <SurveyEditPage survey={survey} surveyComplete={this.surveyComplete} /> }
                     { mode == SurveyMode.View && <SurveyDetailPage survey={survey} /> }
                 </div>
             );
