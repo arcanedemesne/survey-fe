@@ -103,15 +103,16 @@
             value: function componentWillMount() {
                 var _this2 = this;
 
-                var templateName = 'Preliminary Questions';
-                _survey2.default.viewSurvey(templateName).then(function (survey) {
+                _survey2.default.viewSurvey(this.state.templateName).then(function (survey) {
                     _this2.setState({ survey: survey });
                 });
             }
         }, {
             key: 'render',
             value: function render() {
-                var survey = this.state.survey;
+                var _state = this.state;
+                var mode = _state.mode;
+                var survey = _state.survey;
 
                 if (survey) {
                     return _react2.default.createElement(
@@ -122,7 +123,8 @@
                             null,
                             'External Survey Module'
                         ),
-                        _react2.default.createElement(_surveyDetail2.default, { survey: survey })
+                        mode == SurveyMode.Edit && _react2.default.createElement(_surveyDetail2.default, { survey: survey }),
+                        mode == SurveyMode.View && 'View'
                     );
                 } else {
                     return _react2.default.createElement(
